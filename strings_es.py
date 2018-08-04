@@ -89,7 +89,7 @@ secret_chats = 'Creo que estás preparado para que te enseñe una de las más po
                 'impiden realizar capturas de pantalla, y sus notificaciones no muestran el remitente ni el ' \
                 'contenido del mensaje.'
 
-help = 'Bot diseñado para guiarte por todas las funciones de Telegram'
+help = 'Bot diseñado para guiarte por todas las funciones de Telegram. Desarrollado por @Fedeparg'
 
 error = 'Error. Mensaje no esperado'
 

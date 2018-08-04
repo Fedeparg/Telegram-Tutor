@@ -64,6 +64,7 @@ def main():
     )
 
     updater.dispatcher.add_handler(conv_handler)
+    updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
 
     # log all errors
     updater.dispatcher.add_error_handler(error)
