@@ -6,7 +6,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger()
-LANGUAGE, MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(10)
+MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(9)
 
 
 keyboard_guia_es = [[InlineKeyboardButton("Mensajes", callback_data='messages'),
@@ -35,4 +35,3 @@ def button_guide(bot, update):
                           message_id=query.message.message_id,
                           reply_markup=reply_markup_guide,
                           parse_mode=ParseMode.MARKDOWN)
-
