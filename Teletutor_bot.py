@@ -1,18 +1,17 @@
 #!/usr/bin/env python
-
+from telegram.ext import *
 from functions_es import *
 from guide_spa import *
-import logging
-from telegram.ext import *
+import settings as st
 
 """Start logging"""
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger()
-"""Sates of the automaton"""
-MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(9)
-"""Pattern for introduction selection"""
+
+"""Starts the automaton"""
+st.init()
 
 
 def start(bot, update):
@@ -40,24 +39,24 @@ def main():
         allow_reentry=True,
 
         states={
-            MODE_SELECTION: [CommandHandler('guia', guide_es),
-                             CommandHandler('tutorial', tutorial_es)],
+            st.MODE_SELECTION: [CommandHandler('guia', guide_es),
+                                CommandHandler('tutorial', tutorial_es)],
 
-            GUIDE: [CallbackQueryHandler(button_guide)],
+            st.GUIDE: [CallbackQueryHandler(button_guide)],
 
-            MESSAGES: [CommandHandler('siguiente', messages_es)],
+            st.MESSAGES: [CommandHandler('siguiente', messages_es)],
 
-            GROUPS: [CommandHandler('siguiente', groups_es)],
+            st.GROUPS: [CommandHandler('siguiente', groups_es)],
 
-            CHANNELS: [CommandHandler('siguiente', channels_es)],
+            st.CHANNELS: [CommandHandler('siguiente', channels_es)],
 
-            CLOUD: [CommandHandler('siguiente', cloud_es)],
+            st.CLOUD: [CommandHandler('siguiente', cloud_es)],
 
-            BOTS: [CommandHandler('siguiente', bots_es)],
+            st.BOTS: [CommandHandler('siguiente', bots_es)],
 
-            MEDIA: [MessageHandler(Filters.document, media_es)],
+            st.MEDIA: [MessageHandler(Filters.document, media_es)],
 
-            SECRET_CHATS: [MessageHandler(Filters.sticker, secret_chats_es)]
+            st.SECRET_CHATS: [MessageHandler(Filters.sticker, secret_chats_es)]
         },
         fallbacks=[CommandHandler('stop', stop_es),
                    MessageHandler(Filters.all, error)]

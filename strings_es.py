@@ -59,7 +59,8 @@ bots = 'Pasemos a hablar de mí. Los bots son servicios con los que puedes inter
         'para buscar el mejor GIF en cada situación. Los bots genéricos que se pueden utilizar en cualquier ' \
         'chat son:\n' \
         '- @gif *[palabra_clave]* Permite buscar GIFs' \
-        '\n- @soundmemesbot *[palabraclave]* Permite buscar memes en audio.\n' \
+        '\n- @soundmemesbot *[palabra_clave]* Permite buscar memes en audio.\n' \
+        '- @wiki *[palabra_clave]* Permite buscar artículos en Wikipedia.\n' \
         'Para buscar nuevos bots, puedes utilizar un motor de busqueda (Google, Bing, DuckDuckGo...). Hay cientos' \
         ' de páginas en las que se comentan los mejores bots.'
 bots2 = 'Prueba a enviarme un GIF con el bot y continuaremos'

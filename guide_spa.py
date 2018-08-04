@@ -1,27 +1,27 @@
 import logging
+import settings as st
 from telegram import *
+
 import strings_es as es_str
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
 logger = logging.getLogger()
-MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(9)
-
 
 keyboard_guia_es = [[InlineKeyboardButton("Mensajes", callback_data='messages'),
-                    InlineKeyboardButton("Grupos", callback_data='groups')],
+                     InlineKeyboardButton("Grupos", callback_data='groups')],
                     [InlineKeyboardButton("Canales", callback_data='channels'),
-                    InlineKeyboardButton("Nube", callback_data='cloud')],
+                     InlineKeyboardButton("Nube", callback_data='cloud')],
                     [InlineKeyboardButton("Bots", callback_data='bots'),
-                    InlineKeyboardButton("Multimedia", callback_data='media')],
+                     InlineKeyboardButton("Multimedia", callback_data='media')],
                     [InlineKeyboardButton("Chats secretos", callback_data='secret_chats')]]
 reply_markup_guide = InlineKeyboardMarkup(keyboard_guia_es)
 
 
 def guide_es(bot, update):
     update.message.reply_text(es_str.selection, reply_markup=reply_markup_guide)
-    return GUIDE
+    return st.GUIDE
 
 
 def button_guide(bot, update):
