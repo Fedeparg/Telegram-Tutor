@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 
-import strings_en as en_str
 from functions_es import *
 from guide_spa import *
 import logging
-from telegram import *
 from telegram.ext import *
-import re
 
 """Start logging"""
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -14,36 +11,12 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger()
 """Sates of the automaton"""
-LANGUAGE, MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(10)
+MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(9)
 """Pattern for introduction selection"""
-pattern = re.compile("English*")
-
-
-def help(bot, update):
-    update.message.reply_text(en_str.help)
 
 
 def start(bot, update):
-    """Method used to start the automaton"""
-    reply_keyboard = [['Español 🇪🇸', 'English 🇬🇧']]
-    update.message.reply_markdown('🇬🇧 🇪🇸 ?',
-                                  reply_markup=ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True))
-    logger.info('%s started the bot.', update.message.from_user.first_name)
-    return LANGUAGE
-
-
-def language_selected(bot, update):
-    """Select introduction based on first selection. Can be changed if the user uses the command of the other introduction"""
-    mssg = update.message
-    if pattern.match(mssg.text):
-        update.message.reply_markdown(en_str.language1 +
-                                      mssg.from_user.first_name + '.',
-                                      reply_markup=ReplyKeyboardRemove())
-        update.message.reply_markdown(en_str.language2)
-        update.message.reply_markdown(en_str.language3)
-        return MODE_SELECTION
-    else:
-        return language_es(bot, update)
+    return language_es(bot, update)
 
 
 def test(bot, update):
@@ -60,7 +33,6 @@ def error(bot, update):
 def main():
     # Telegram Bot Authorization Token
     updater = Updater('BOTTOKEN')
-    updater.dispatcher.add_handler(CommandHandler('help', help))
     updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
     # updater.dispatcher.add_handler(MessageHandler(Filters.document, test))
     conv_handler = ConversationHandler(
@@ -68,8 +40,6 @@ def main():
         allow_reentry=True,
 
         states={
-            LANGUAGE: [MessageHandler(Filters.text, language_selected)],
-
             MODE_SELECTION: [CommandHandler('guia', guide_es),
                              CommandHandler('tutorial', tutorial_es)],
 

@@ -7,7 +7,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger()
-LANGUAGE, MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(10)
+MODE_SELECTION, GUIDE, MESSAGES, GROUPS, CHANNELS, CLOUD, BOTS, MEDIA, SECRET_CHATS = range(9)
 
 
 def ayuda(bot, update):
@@ -23,8 +23,7 @@ def stop_es(bot, update):
 
 def language_es(bot, update):
     mssg = update.message
-    update.message.reply_markdown(es_str.introduction +
-                                  mssg.from_user.first_name + '.',
+    update.message.reply_markdown(es_str.introduction,
                                   reply_markup=ReplyKeyboardRemove())
     update.message.reply_markdown(es_str.select_mode)
     return MODE_SELECTION
