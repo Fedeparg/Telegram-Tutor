@@ -1,7 +1,8 @@
 import logging
-import settings as st
+
 from telegram import *
 
+import settings as st
 import strings_es as es_str
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -21,14 +22,15 @@ reply_markup_guide = InlineKeyboardMarkup(keyboard_guia_es)
 
 def guide_es(bot, update):
     update.message.reply_text(es_str.selection, reply_markup=reply_markup_guide)
+    logger.info('%s (@%s) started guide mode', update.message.chat.first_name,
+                update.message.chat.username)
     return st.GUIDE
 
 
 def button_guide(bot, update):
     query = update.callback_query
     data = query.data
-    logger.info('%s selected %s',
-                update.callback_query.message.chat.first_name,
+    logger.info('%s (@%s) selected %s', update.callback_query.message.chat.first_name, update.callback_query.message.chat.username,
                 data)
     bot.edit_message_text(text=getattr(es_str, data),
                           chat_id=query.message.chat_id,

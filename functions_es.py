@@ -18,20 +18,29 @@ def ayuda(bot, update):
 
 def stop_es(bot, update):
     """Ends the automaton"""
-    logger.info('%s stopped the bot', update.message.from_user.first_name)
+    logger.info('%s (@%s) stopped the bot', update.message.from_user.first_name, update.message.chat.username)
     update.message.reply_markdown(es_str.forced_end)
     return Teletutor_bot.ConversationHandler.END
 
 
-def language_es(bot, update):
+def error(bot, update):
+    """Notify the user that his message wasn't expected by the automaton."""
+    logger.warning('Update "%s" caused error "%s"', update, error)
+    update.message.reply_markdown(es_str.error)
+
+
+def start_es(bot, update):
     mssg = update.message
     update.message.reply_markdown(es_str.introduction,
                                   reply_markup=ReplyKeyboardRemove())
     update.message.reply_markdown(es_str.select_mode)
+    logger.info('%s (@%s) started the bot', update.message.chat.first_name, update.message.chat.username)
     return st.MODE_SELECTION
 
 
 def tutorial_es(bot, update):
+    logger.info('%s (@%s) started tutorial mode', update.message.chat.first_name,
+                update.message.chat.username)
     return messages_es(bot, update)
 
 
@@ -86,5 +95,5 @@ def media_es(bot, update):
 def secret_chats_es(bot, update):
     """Send information about secret chats"""
     update.message.reply_markdown(es_str.secret_chats)
-    update.message.reply_markdown(es_str.end)
-    return Teletutor_bot.ConversationHandler.END
+    update.message.reply_markdown(es_str.end_tutorial)
+    return st.MODE_SELECTION

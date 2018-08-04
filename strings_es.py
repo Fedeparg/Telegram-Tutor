@@ -95,6 +95,7 @@ help = 'Bot diseñado para guiarte por todas las funciones de Telegram. Desarrol
 error = 'Error. Mensaje no esperado'
 
 forced_end = 'De acuerdo. Para volver a hablar conmigo utiliza /start'
-end = 'Con esto, has finalizado el tutorial básico de Telegram. Ampliación en progreso'
+end_tutorial = 'Con esto, has finalizado el tutorial básico de Telegram. Ampliación en progreso. Si quieres revisitar una ' \
+      'seccion concreta, utiliza el comando /guia'
 
 selection = 'Elige una de las siguientes opciones:'
