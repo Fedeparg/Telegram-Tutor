@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 from telegram.ext import *
+
 from functions_es import *
 from guide_spa import *
-import settings as st
 
 """Starts the automaton"""
 st.init()
