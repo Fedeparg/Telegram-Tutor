@@ -91,12 +91,22 @@ def media_es(bot, update):
 def chat_preview_es(bot, update):
     """Send information about secret chats"""
     update.message.reply_markdown(st.strings["chat_preview"])
-    update.message.reply_markdown(st.strings["next_section"])
+    update.message.reply_markdown(st.strings["next-section"])
+    return st.VIDEO_NOTES
+
+
+def video_notes_es(bot, update):
+    """Send information about secret chats"""
+    update.message.reply_markdown(st.strings["video_notes"])
+    update.message.reply_markdown(st.strings["video_notes2"])
     return st.SECRET_CHATS
 
 
 def secret_chats_es(bot, update):
     """Send information about secret chats"""
-    update.message.reply_markdown(st.strings["secret_chats"])
-    update.message.reply_markdown(st.strings["end_tutorial"])
-    return st.MODE_SELECTION
+    if update.message.video_note:
+        update.message.reply_markdown(st.strings["secret_chats"])
+        update.message.reply_markdown(st.strings["end_tutorial"])
+        return st.MODE_SELECTION
+    else:
+        update.message.reply_markdown(st.string["video_note_error"])

@@ -16,7 +16,8 @@ keyboard_guia_es = [[InlineKeyboardButton("Mensajes", callback_data='messages'),
                     [InlineKeyboardButton("Bots", callback_data='bots'),
                      InlineKeyboardButton("Multimedia", callback_data='media')],
                     [InlineKeyboardButton("Chat Preview", callback_data='chat_preview'),
-                     InlineKeyboardButton("Chats secretos", callback_data='secret_chats')]]
+                     InlineKeyboardButton("Notas de video", callback_data="video_notes")],
+                     [InlineKeyboardButton("Chats secretos", callback_data='secret_chats')]]
 reply_markup_guide = InlineKeyboardMarkup(keyboard_guia_es)
 
 

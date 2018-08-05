@@ -44,9 +44,11 @@ def main():
 
             st.MEDIA: [MessageHandler(Filters.document, media_es)],
 
-            st.CHAT_PREVIEW: [CommandHandler('siguiente', chat_preview_es)],
+            st.CHAT_PREVIEW: [MessageHandler(Filters.sticker, chat_preview_es)],
 
-            st.SECRET_CHATS: [MessageHandler(Filters.sticker, secret_chats_es)]
+            st.VIDEO_NOTES: [CommandHandler('siguiente', video_notes_es)],
+
+            st.SECRET_CHATS: [MessageHandler(Filters.video_note, secret_chats_es)]
         },
         fallbacks=[CommandHandler('stop', stop_es),
                    MessageHandler(Filters.all, error)]
@@ -54,6 +56,7 @@ def main():
 
     updater.dispatcher.add_handler(conv_handler)
     updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
+
 
     # log all errors
     updater.dispatcher.add_error_handler(error)
