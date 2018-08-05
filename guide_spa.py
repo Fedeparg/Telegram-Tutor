@@ -15,7 +15,8 @@ keyboard_guia_es = [[InlineKeyboardButton("Mensajes", callback_data='messages'),
                      InlineKeyboardButton("Nube", callback_data='cloud')],
                     [InlineKeyboardButton("Bots", callback_data='bots'),
                      InlineKeyboardButton("Multimedia", callback_data='media')],
-                    [InlineKeyboardButton("Chats secretos", callback_data='secret_chats')]]
+                    [InlineKeyboardButton("Chat Preview", callback_data='chat_preview'),
+                     InlineKeyboardButton("Chats secretos", callback_data='secret_chats')]]
 reply_markup_guide = InlineKeyboardMarkup(keyboard_guia_es)
 
 
@@ -27,10 +28,14 @@ def guide_es(bot, update):
 
 
 def button_guide(bot, update):
+    """The program read the callback_query and send the appropriate section"""
     query = update.callback_query
     data = query.data
     logger.info('%s (@%s) selected %s', update.callback_query.message.chat.first_name,
                 update.callback_query.message.chat.username, data)
+
+    # We notify that have receive the callback and reply.
+    bot.answer_callback_query(update.callback_query.id)
     bot.edit_message_text(text=st.strings[data],
                           chat_id=query.message.chat_id,
                           message_id=query.message.message_id,

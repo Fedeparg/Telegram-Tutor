@@ -44,6 +44,8 @@ def main():
 
             st.MEDIA: [MessageHandler(Filters.document, media_es)],
 
+            st.CHAT_PREVIEW: [CommandHandler('siguiente', chat_preview_es)],
+
             st.SECRET_CHATS: [MessageHandler(Filters.sticker, secret_chats_es)]
         },
         fallbacks=[CommandHandler('stop', stop_es),

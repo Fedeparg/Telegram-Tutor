@@ -1,7 +1,5 @@
 import logging
 
-from telegram import *
-
 import Teletutor_bot
 import settings as st
 
@@ -71,7 +69,7 @@ def cloud_es(bot, update):
 
 
 def bots_es(bot, update):
-    """Send information about Bbts"""
+    """Send information about Bots"""
     update.message.reply_markdown(st.strings["bots"])
     update.message.reply_markdown(st.strings["bots2"])
     return st.MEDIA
@@ -83,11 +81,18 @@ def media_es(bot, update):
         if update.message.document.file_name == 'giphy.mp4':
             update.message.reply_markdown(st.strings["media"])
             update.message.reply_markdown(st.strings["media2"])
-            return st.SECRET_CHATS
+            return st.CHAT_PREVIEW
         elif update.message.document.mime_type == 'video/mp4':
             update.message.reply_markdown(st.strings["media_error1"])
         else:
             update.message.reply_markdown(st.strings["media_error2"])
+
+
+def chat_preview_es(bot, update):
+    """Send information about secret chats"""
+    update.message.reply_markdown(st.strings["chat_preview"])
+    update.message.reply_markdown(st.strings["next_section"])
+    return st.SECRET_CHATS
 
 
 def secret_chats_es(bot, update):
