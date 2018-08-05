@@ -23,14 +23,13 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
     # updater.dispatcher.add_handler(MessageHandler(Filters.document, test))
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('start', start)],
+        entry_points=[CommandHandler('guia', guide_es), CommandHandler('tutorial', tutorial_es)],
         allow_reentry=True,
 
         states={
-            st.MODE_SELECTION: [CommandHandler('guia', guide_es),
-                                CommandHandler('tutorial', tutorial_es)],
 
-            st.GUIDE: [CallbackQueryHandler(button_guide)],
+            st.GUIDE: [CallbackQueryHandler(button_guide),
+                       CommandHandler('tutorial', tutorial_es)],
 
             st.MESSAGES: [CommandHandler('siguiente', messages_es)],
 
@@ -54,9 +53,9 @@ def main():
                    MessageHandler(Filters.all, error)]
     )
 
+    updater.dispatcher.add_handler(CommandHandler('start', start_es))
     updater.dispatcher.add_handler(conv_handler)
     updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
-
 
     # log all errors
     updater.dispatcher.add_error_handler(error)

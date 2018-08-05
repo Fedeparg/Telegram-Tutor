@@ -1,6 +1,7 @@
 import logging
 
 import Teletutor_bot
+from telegram.ext import *
 import settings as st
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -31,7 +32,6 @@ def start_es(bot, update):
     update.message.reply_markdown(st.strings["introduction"])
     update.message.reply_markdown(st.strings["select_mode"])
     logger.info('%s (@%s) started the bot', update.message.chat.first_name, update.message.chat.username)
-    return st.MODE_SELECTION
 
 
 def tutorial_es(bot, update):
@@ -107,6 +107,6 @@ def secret_chats_es(bot, update):
     if update.message.video_note:
         update.message.reply_markdown(st.strings["secret_chats"])
         update.message.reply_markdown(st.strings["end_tutorial"])
-        return st.MODE_SELECTION
+        return ConversationHandler.END
     else:
         update.message.reply_markdown(st.string["video_note_error"])
