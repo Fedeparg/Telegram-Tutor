@@ -1,5 +1,5 @@
-#!/usr/bin/env python
-from telegram.ext import *
+#!/usr/bin/env python3
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
 
 from functions_es import *
 from guide_spa import *

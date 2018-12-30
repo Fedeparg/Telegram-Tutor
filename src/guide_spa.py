@@ -1,6 +1,6 @@
 import logging
 
-from telegram import *
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 
 import settings as st
 
