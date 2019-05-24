@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters
+import logging
+
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageHandler, Filters, ConversationHandler
 
 from functions_es import *
-from guide_spa import *
+import guide_spa as g_spa
+import settings as st
 
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+
+logger = logging.getLogger(__name__)
 
 """Starts the automaton"""
 st.init()
@@ -24,13 +32,13 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
     # updater.dispatcher.add_handler(MessageHandler(Filters.document, test))
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('guia', guide_es), CommandHandler(
+        entry_points=[CommandHandler('guia', g_spa.guide_es), CommandHandler(
             'tutorial', tutorial_es)],
         allow_reentry=True,
 
         states={
 
-            st.GUIDE: [CallbackQueryHandler(button_guide),
+            st.GUIDE: [CallbackQueryHandler(g_spa.button_guide),
                        CommandHandler('tutorial', tutorial_es)],
 
             st.MESSAGES: [CommandHandler('siguiente', messages_es)],

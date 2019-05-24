@@ -1,13 +1,13 @@
 import logging
 
-import Teletutor_bot
+
 from telegram.ext import ConversationHandler
 import settings as st
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 def ayuda(bot, update):
@@ -18,7 +18,7 @@ def stop_es(bot, update):
     """Ends the automaton"""
     logger.info('%s (@%s) stopped the bot', update.message.from_user.first_name, update.message.chat.username)
     update.message.reply_markdown(st.strings["force_end"])
-    return Teletutor_bot.ConversationHandler.END
+    return bot.ConversationHandler.END
 
 
 def error(bot, update):
