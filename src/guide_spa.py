@@ -1,13 +1,8 @@
-import logging
-
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 
 import settings as st
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                    level=logging.INFO)
-
-logger = logging.getLogger()
+logger = st.logging.getLogger()
 
 keyboard_guia_es = [[InlineKeyboardButton("Mensajes", callback_data='messages'),
                      InlineKeyboardButton("Grupos", callback_data='groups')],

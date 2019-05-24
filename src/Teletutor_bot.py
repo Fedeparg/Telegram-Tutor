@@ -4,6 +4,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageH
 from functions_es import *
 from guide_spa import *
 
+
 """Starts the automaton"""
 st.init()
 
@@ -23,7 +24,8 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('ayuda', ayuda))
     # updater.dispatcher.add_handler(MessageHandler(Filters.document, test))
     conv_handler = ConversationHandler(
-        entry_points=[CommandHandler('guia', guide_es), CommandHandler('tutorial', tutorial_es)],
+        entry_points=[CommandHandler('guia', guide_es), CommandHandler(
+            'tutorial', tutorial_es)],
         allow_reentry=True,
 
         states={
@@ -47,7 +49,8 @@ def main():
 
             st.VIDEO_NOTES: [CommandHandler('siguiente', video_notes_es)],
 
-            st.SECRET_CHATS: [MessageHandler(Filters.video_note, secret_chats_es)]
+            st.SECRET_CHATS: [MessageHandler(
+                Filters.video_note, secret_chats_es)]
         },
         fallbacks=[CommandHandler('stop', stop_es),
                    MessageHandler(Filters.all, error)]
