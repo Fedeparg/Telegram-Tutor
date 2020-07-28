@@ -10,4 +10,4 @@ this can be useful for many people and encourage to use Telegram. A safe, fast a
 
 Every new collab is welcomed. I work with this Telegram API:
 <https://github.com/python-telegram-bot/python-telegram-bot>
-and Python3.6
+and Python3.8
